@@ -16,8 +16,4 @@ ERD v1.
 
 ### Errors I faced during development:
 1. **Foreign key constraints error** : when I added a foreign key to the users table I got the **_General error: 1215 Cannot add foreign key constraint"_** error. This is caused because the users table was created first before the other table with the key I want. How migrations works is that tables are created based on which one was made first using the artisan make:migration command. I solved this by simply running the migrate --path=.... command on the table I want first, followed by the rest.
-
-
-### TODOS:
-1. Test the user table with the users_roles table.
-2. Add the rest of the tables based on the ERD.
+2. **Error when assigning mass data to db using tinker**  
