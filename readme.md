@@ -15,9 +15,8 @@ ERD v1.
 ![picture](ERD_MVC.png)
 
 ### Errors I faced during development:
-1. **Foreign key constraints error** : when I added a foreign key to the users table I got the **_General error: 1215 Cannot add foreign key constraint"_** error. This is caused because the users table was created first before the other table with the key I want. How migrations works is that tables are created based on which one was made first using the artisan make:migration command. I solved this by simply running the migrate --path=.... command on the table I want first, followed by the rest.
+1. **Foreign key constraints error** : when I added a foreign key to the users table I got the **_General error: 1215 Cannot add foreign key constraint"_** error. This is caused forcing a foreign key constraint on the user table before the parent table was created. How migrations works is that tables are created based on which one was made first using the artisan make:migration command. I solved this by simply running the migrate --path=.... command on the table I want first, followed by the rest. ***Update*** Removing the forced contstraint will cause no issue at all. But will have to find out if this is best practice.
 
 
 ### TODOS:
-1. Test the user table with the users_roles table.
-2. Add the rest of the tables based on the ERD.
+1. Update the ERD

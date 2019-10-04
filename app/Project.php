@@ -4,14 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Project extends Model
 {
+    //
 
     protected $fillable = [
-        'role', 'level'
+        'user_id', 'project_name',
     ];
 
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }
