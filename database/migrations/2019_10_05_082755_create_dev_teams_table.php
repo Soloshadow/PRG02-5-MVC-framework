@@ -15,7 +15,7 @@ class CreateDevTeamsTable extends Migration
     {
         Schema::create('dev_teams', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('team_name');
+            $table->string('position');
             $table->timestamps();
         });
     }
