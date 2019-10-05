@@ -44,4 +44,8 @@ class User extends Authenticatable
     public function project(){
         return $this->hasOne(Project::class);
     }
+
+    public function team(){
+        return $this->belongsTo(DevTeam::class);
+    }
 }
