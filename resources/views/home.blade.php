@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Welcome back, {{$user->name}}!
+                    You are a {{$user->team->position}} {{$user->role->role}}
                 </div>
             </div>
         </div>
