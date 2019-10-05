@@ -25,11 +25,12 @@ class HomeController extends Controller
     public function index($user)
     {
         
-        //Elonquent model to get data from database
+        //Elonquent model to get user data from from user table
         $user = User::find($user);
-
+        $project = $user->project->get();
         return view('home', [
             'user' => $user,
+            'project' => $project,
         ]);
     }
 }

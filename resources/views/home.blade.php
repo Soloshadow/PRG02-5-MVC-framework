@@ -14,8 +14,15 @@
                         </div>
                     @endif
 
-                    Welcome back, {{$user->name}}!
-                    You are a {{$user->team->position}} {{$user->role->role}}
+                    Welcome back, {{$user->name}}! <br />
+                    You are a {{$user->team->position}} {{$user->role->role}} <br />
+                    Projects you are currently working on:
+                    <ul>
+                        @foreach($project as $p)
+                            <li>{{$p->project_name}}</li>
+                        @endforeach
+                    </ul>
+                    
                 </div>
             </div>
         </div>
