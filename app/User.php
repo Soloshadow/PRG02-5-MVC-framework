@@ -37,15 +37,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role(){
-        return $this->belongsTo(Role::class);
+    public function level(){
+        return $this->belongsTo(Level::class);
     }
 
     public function project(){
         return $this->hasOne(Project::class);
     }
 
-    public function team(){
-        return $this->belongsTo(DevTeam::class);
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
 }

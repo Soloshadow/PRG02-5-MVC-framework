@@ -4,13 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DevTeam extends Model
+class Level extends Model
 {
+
     protected $fillable = [
-        'position',
+        'level'
     ];
 
     public function user(){
-        return $this->hasMany(User::class); 
+        return $this->hasMany(User::class);
     }
 }

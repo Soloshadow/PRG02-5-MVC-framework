@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-
     protected $fillable = [
-        'role', 'level'
+        'position',
     ];
 
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class); 
     }
 }

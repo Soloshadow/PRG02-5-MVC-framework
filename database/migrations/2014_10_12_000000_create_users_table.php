@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('company_name');
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('team_id')->nullable();
+            $table->unsignedBigInteger('level_id');
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             
             $table->index("role_id");
-            $table->index('team_id');
+            $table->index('level_id');
         });
     }
 
