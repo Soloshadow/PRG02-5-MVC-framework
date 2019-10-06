@@ -15,7 +15,7 @@
                     @endif
 
                     Welcome back, {{$user->name}}! <br />
-                    You are a {{$user->team->position}} {{$user->role->role}} <br />
+                    You are a {{$user->role->position}} {{$user->level->level}} <br />
                     Projects you are currently working on:
                     <ul>
                         @foreach($project as $p)

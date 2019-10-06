@@ -28,6 +28,8 @@ class HomeController extends Controller
         //Elonquent model to get user data from from user table
         $user = User::find($user);
         $project = $user->project->get();
+
+        // passing the data to the view
         return view('home', [
             'user' => $user,
             'project' => $project,

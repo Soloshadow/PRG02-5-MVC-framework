@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Role::class, function (Faker $faker) {
     return [
-        'position' => $faker->randomElement(['Front-end', 'Back-end', 'Fullstack'])
+        'position' => $faker->randomElement(['front-end', 'back-end', 'fullstack'])
     ];
 });
