@@ -37,14 +37,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // one to one relationship. User has one level
     public function level(){
         return $this->belongsTo(Level::class);
     }
 
+    // one to many relationship. User can have many projects
     public function project(){
-        return $this->hasOne(Project::class);
+        return $this->hasMany(Project::class);
     }
 
+    // one to many relationship. User can have many task through projects
+    public function projectTask(){
+        return $this->hasManyThrough(Task::class, Project::class);
+    }
+
+    // one to one relationship. User can have one role
     public function role(){
         return $this->belongsTo(Role::class);
     }

@@ -28,6 +28,6 @@ class DatabaseSeeder extends Seeder
         factory(App\Project::class)->create();
 
         // create mock task data
-        factory(App\Task::class)->create();
+        factory(App\Task::class, 3)->create();
     }
 }

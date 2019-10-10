@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         
         //Elonquent model to get user data from from user table
-        $user = User::find($user);
+        $user = User::findOrFail($user); //findOrFail will return a 404 error when the user can not be found
         $project = $user->project->get();
 
         // passing the data to the view
