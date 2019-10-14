@@ -34,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                          @if(Auth::check())
-                            testing
+                            <a href="{{ route('projects') }}" class="nav-link">Projects</a>
                         @endif
                     </ul>
 

@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Welcome back, {{$user->name}}! <br />
+                    Welcome back {{$role}} {{$user->name}}! <br />
                     
                     Projects you are currently working on:
                     <ul>

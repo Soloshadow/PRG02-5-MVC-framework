@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('/{user}/dashboard', 'HomeController@index')->name('home');
 
+Route::get('/projects/', 'ProjectsListController@index')->name('projects')->middleware('auth');
+

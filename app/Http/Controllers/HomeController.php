@@ -25,16 +25,15 @@ class HomeController extends Controller
     public function index($user)
     {
         
-        //Elonquent model to get user data from from user table
+        //Elonquent model to get logged in user data from user table
         $user = User::findOrFail($user); //findOrFail will return a 404 error when the user can not be found
-        $project = $user->project;
-        $tasks = $user->projectTask;
 
         // passing the data to the view
         return view('home', [
             'user' => $user,
-            'project' => $project,
-            'tasks' => $tasks,
+            'role' => $user->role->role, // get the user role and pass it as a variable into the home view
+            'project' => $user->project, // get the project the user is assigned to and pass it to the home view
+            'tasks' => $user->projectTask, // get the prohect tasks from the user and pass it to the home view
         ]);
     }
 }
