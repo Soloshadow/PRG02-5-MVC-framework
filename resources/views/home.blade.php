@@ -19,7 +19,14 @@
                     Projects you are currently working on:
                     <ul>
                         @foreach($project as $p)
-                            <li>{{$p->project_name}}</li>
+                            <li>
+                                {{$p->project_name}}
+                                <ul>
+                                    @foreach($tasks as $task)
+                                        <li>{{$task->task}} - {{$task->MoSCoW}}</li>
+                                    @endforeach
+                                </ul>
+                            </li>
                         @endforeach
                     </ul>
                     
