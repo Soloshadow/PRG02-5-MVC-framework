@@ -32,8 +32,8 @@ class HomeController extends Controller
         return view('home', [
             'user' => $user,
             'role' => $user->role->role, // get the user role and pass it as a variable into the home view
-            'project' => $user->project, // get the project the user is assigned to and pass it to the home view
-            'tasks' => $user->projectTask, // get the prohect tasks from the user and pass it to the home view
+            'project' => $user->projects, // get the project the user is assigned to and pass it to the home view
+            'tasks' => $user->projectTasks, // get the prohect tasks from the user and pass it to the home view
         ]);
     }
 }

@@ -16,7 +16,7 @@ class ProjectsListController extends Controller
     {
 
         // Get all projects with their tasks
-        $projects = Project::with('task')->get();
+        $projects = Project::with('tasks')->get();
 
         // dd($projects);
 

@@ -43,12 +43,12 @@ class User extends Authenticatable
     // }
 
     // one to many relationship. User can have many projects
-    public function project(){
+    public function projects(){
         return $this->hasMany(Project::class);
     }
 
     // one to many relationship. User can have many task through projects
-    public function projectTask(){
+    public function projectTasks(){
         return $this->hasManyThrough(Task::class, Project::class);
     }
 
