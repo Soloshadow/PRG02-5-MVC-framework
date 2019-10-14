@@ -14,7 +14,9 @@ class ProjectsListController extends Controller
      */
     public function index()
     {
-        $projects = Project::get();
+
+        // Get all projects with their tasks
+        $projects = Project::with('task')->get();
 
         // dd($projects);
 
