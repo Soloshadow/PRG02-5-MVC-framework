@@ -81,8 +81,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to ProTasks. <br/>
-                    Please login or register to continue.
+                    @if(Auth::check())
+                        Welcome {{Auth::user()->name}}. <br/>
+                        Go to your dashboard to check out your current tasks.
+                    @else
+                        Welcome to ProTasks. <br/>
+                        Please login or register to continue.
+                    @endif
                 </div>
             </div>
         </div>
