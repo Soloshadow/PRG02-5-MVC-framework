@@ -6,7 +6,8 @@ use App\Role;
 use Faker\Generator as Faker;
 
 $factory->define(Role::class, function (Faker $faker) {
+    
     return [
-        'position' => $faker->randomElement(['front-end', 'back-end', 'fullstack'])
+        'role' => $faker->randomElement(['project owner', 'project leader', 'junior developer', 'medior developer', 'senior developer'])
     ];
 });

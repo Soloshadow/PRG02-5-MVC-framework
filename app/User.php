@@ -38,9 +38,9 @@ class User extends Authenticatable
     ];
 
     // one to one relationship. User has one level
-    public function level(){
-        return $this->belongsTo(Level::class);
-    }
+    // public function level(){
+    //     return $this->belongsTo(Level::class);
+    // }
 
     // one to many relationship. User can have many projects
     public function project(){
@@ -52,7 +52,7 @@ class User extends Authenticatable
         return $this->hasManyThrough(Task::class, Project::class);
     }
 
-    // one to one relationship. User can have one role
+    // one to many relationship. User can have one role
     public function role(){
         return $this->belongsTo(Role::class);
     }

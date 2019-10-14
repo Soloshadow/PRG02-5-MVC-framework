@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->foreign('project_id')->references('id')->on('projects')->ondelete('cascade');
             $table->string('task');
             $table->char('MoSCoW');
+            $table->string('progress');
             $table->timestamps();
 
             $table->index('project_id');

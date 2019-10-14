@@ -10,5 +10,6 @@ $factory->define(Task::class, function (Faker $faker) {
         'project_id' => 1,
         'task' => $faker->sentence,
         'MoSCoW' => $faker->randomElement(['M', 'S', 'C', 'W']),
+        'progress' => $faker->randomElement(['to do', 'doing', 'done'],)
     ];
 });

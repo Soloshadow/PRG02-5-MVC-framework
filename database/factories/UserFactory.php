@@ -20,8 +20,8 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'company_name' => $faker->company,
-        'role_id' => $faker->randomElement([]),
-        'level_id' => 1,
+        'role_id' => $faker->randomElement([1,2,3,4,5]),
+        // 'level_id' => 1,
         'email' => $faker->unique()->safeEmail,
         // 'email' => 't@gmail.com', // didnt feel like memorizing random emails
         'email_verified_at' => now(),

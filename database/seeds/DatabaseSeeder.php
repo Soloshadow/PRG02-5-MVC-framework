@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
         // create mock data using php artisan db:seed
 
         // create mock user data
-        factory(App\User::class)->create();
+        factory(App\User::class,5)->create();
 
         // create mock role data
-        factory(App\Role::class)->create();
+        factory(App\Role::class,5)->create();
 
         // create mock level data
-        factory(App\Level::class)->create();
+        // factory(App\Level::class)->create();
 
         // create mock project data
         factory(App\Project::class)->create();
