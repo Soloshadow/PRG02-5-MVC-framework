@@ -44,7 +44,7 @@
 
                             <div class="col-md-6">
 
-                                <select name="role">
+                                <select name="role" class="form-control">
                                     <option value=1>project owner </option>
                                     <option value=2>project leader </option>
                                     <option value=3>junior developer </option>

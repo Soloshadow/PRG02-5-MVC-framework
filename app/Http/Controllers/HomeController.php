@@ -23,7 +23,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */ 
     public function index($user)
-    {
+    {  
+         
+        
         
         //Elonquent model to get logged in user data from user table
         $user = User::findOrFail($user); //findOrFail will return a 404 error when the user can not be found

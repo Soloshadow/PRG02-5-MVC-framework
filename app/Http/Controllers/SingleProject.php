@@ -12,10 +12,10 @@ class SingleProject extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($user, $id)
     {
-        // Get the single project from the database and pass it to the view
-        $project = Project::findOrFail($id);
+        // Get the single project using id from database where user_id matches user in parameter
+        $project = Project::findOrFail($id)->where('user_id', $user)->first();
         
         // dd($project->project_name);
 
