@@ -20,7 +20,9 @@
                     <ul>
                         @foreach($project as $p)
                             <li>
-                                {{$p->project_name}}
+                                {{$p->project_name}} -
+                            <a href="{{route('singleproject')}}"> </a>
+                                {{-- <a href="{{ url('/projects/'.$p->id) }}"> view </a> --}}
                                 <ul>
                                     @foreach($tasks as $task)
                                         <li>{{$task->task}} - {{$task->MoSCoW}}</li>

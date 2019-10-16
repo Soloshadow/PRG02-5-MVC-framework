@@ -35,19 +35,21 @@ class LoginController extends Controller
 
     public function redirectTo(){
         // get the user role
-        $user = Auth::user()->role->position;
+        // $user = Auth::user();
         $user_id = Auth::id();
 
-        // redirect based on user role
-        switch($user){
-            case "project owner":
-                return "/home";
-                break;
-            default:
-                return '/'.$user_id.'/dashboard/';
-                break;
-        };
-
+        // dd($user->attributes);
+        // // redirect based on user role
+        // switch($user){
+        //     case "project owner":
+        //         return "/home";
+        //         break;
+        //     default:
+        //         return '/'.$user_id.'/dashboard/';
+        //         break;
+        //     };
+            
+        return '/'.$user_id.'/dashboard/';
     }
 
     /**
