@@ -17,9 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/{user}/dashboard', 'HomeController@index')->name('home');
 
-Route::get('/projects/', 'ProjectsListController@index')->name('projects')->middleware('auth');
+// Grouping the routes which requires the users to be logged in
+Route::group(['middleware' => ['auth']], function(){
+    
+    Route::get('/{user}/dashboard', 'HomeController@index')->name('home');
+    Route::get('/projects/', 'ProjectsListController@index')->name('projects')->middleware('auth');
+    Route::get('/projects/{id}/', 'SingleProject@index')->name('singleproject');
+});
 
-Route::get('/projects/{id}/', 'SingleProject@index')->name('singleproject');
+// Route::get('/projects/', 'ProjectsListController@index')->name('projects')->middleware('auth');
+
+// Route::get('/projects/{id}/', 'SingleProject@index')->name('singleproject');
 

@@ -63,12 +63,12 @@
             }
         </style>
     </head>
-    <body>
+    <body
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                <a href="{{ url('/'.auth::id().'/dashboard') }}">Dashboard</a>
+                <a href="{{ route('home', ['user' =>Auth::id()]) }}">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
