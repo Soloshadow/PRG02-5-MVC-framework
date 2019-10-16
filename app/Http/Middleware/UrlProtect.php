@@ -17,9 +17,11 @@ class UrlProtect
      */
     public function handle($request, Closure $next)
     {
-        //dd($request->route('user'));
-        //dd(auth()->user()->id);
-
+        
+        /* 
+            Get the user id parameter from url and compare it to the authenticated user id.
+            If not the same redirect user to another page.
+        */
         if($request->route('user') != auth()->user()->id){
             dd('no access');
         }

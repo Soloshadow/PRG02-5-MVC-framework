@@ -19,7 +19,7 @@ Auth::routes();
 
 
 // Grouping the routes which requires the users to be logged in
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth', 'url_protect']], function(){
     
     // Route::get('/{user}/dashboard', 'HomeController@index')->name('home');
     Route::get('/projects/', 'ProjectsListController@index')->name('projects');
@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function(){
     // Use a prefix for the route and also group other routes with the same prefix
     Route::prefix('{user}') -> group(function(){
         Route::get('dashboard', 'HomeController@index') -> name('home');
-        Route::get('/projects/{id}/', 'SingleProject@index')->name('singleproject')->middleware('url_protect');
+        Route::get('/projects/{id}/', 'SingleProject@index')->name('singleproject');
     });
 });
 
