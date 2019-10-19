@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         // create mock role data
         // factory(App\Role::class,5)->create();
-        // Using the below seed method to insert roles in specifi order using array instead of randomizing it.
+        // Using the below seed method to insert roles in specific order using array instead of randomizing it and making sure it only appearts once.
         $roles = ['project owner', 'project leader', 'junior developer', 'medior developer', 'senior developer'];
         for($i=0; $i < count($roles); $i++){
             DB::table('roles')->insert([
@@ -33,8 +33,11 @@ class DatabaseSeeder extends Seeder
         // create mock level data
         // factory(App\Level::class)->create();
 
+        // create mock user_projects data
+        $this->call(UsersProjectsTableSeeder::class);
+
         // create mock project data
-        factory(App\Project::class,4)->create();
+        factory(App\Project::class,10)->create();
 
         // create mock task data
         factory(App\Task::class,20)->create();

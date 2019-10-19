@@ -9,11 +9,12 @@ class Project extends Model
     //
 
     protected $fillable = [
-        'user_id', 'project_name',
+        'project_name',
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function users(){
+        // second argument is to define a specific joined table name.
+        return $this->belongsToMany(User::class, 'user_project'); 
     }
 
     public function tasks(){

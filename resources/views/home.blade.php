@@ -23,11 +23,11 @@
                                 {{$p->project_name}} -
                             <a href="{{route('singleproject', ['id' => $p->id, 'user'=> $user])}}"> view </a>
                                 {{-- <a href="{{ url('/projects/'.$p->id) }}"> view </a> --}}
-                                <ul>
+                                {{-- <ul>
                                     @foreach($tasks as $task)
                                         <li>{{$task->task}} - {{$task->MoSCoW}}</li>
                                     @endforeach
-                                </ul>
+                                </ul> --}}
                             </li>
                         @endforeach
                     </ul>

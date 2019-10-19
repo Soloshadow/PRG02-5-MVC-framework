@@ -15,7 +15,7 @@ class SingleProject extends Controller
     public function index($user, $id)
     {
         // Get the single project using id from database where user_id matches user in parameter
-        $project = Project::findOrFail($id)->where('user_id', $user)->first();
+        $project = Project::findOrFail($id);
         
         // dd($project->project_name);
 

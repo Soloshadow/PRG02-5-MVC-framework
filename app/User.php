@@ -42,9 +42,9 @@ class User extends Authenticatable
     //     return $this->belongsTo(Level::class);
     // }
 
-    // one to many relationship. User can have many projects
+    // one to many relationship. User can have many projects. the second argument is to define a specific table name
     public function projects(){
-        return $this->hasMany(Project::class);
+        return $this->belongsToMany(Project::class, 'user_project');
     }
 
     // one to many relationship. User can have many task through projects
