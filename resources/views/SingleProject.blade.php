@@ -1,14 +1,19 @@
 @extends('layouts.app');
 
 @section('content')
+    <div class="container">
 
-    {{$project->project_name}}
+        {{$project->project_name}}
 
-    @foreach($project->tasks as $tasks)
-    {{-- {{ $tasks}} --}}
-        <ul>
-        <li>{{$tasks->task}} - {{ $tasks->MoSCoW}} - {{ $tasks->progress}} - </li>
-        </ul>
-    @endforeach
+        <hr/>
+        
+        @if($tasks != null)
+            @foreach($tasks as $tasks)
+                <ul>
+                    <li>{{$tasks->task}} - {{ $tasks->MoSCoW}} - {{ $tasks->progress}} - </li>
+                </ul>
+            @endforeach
+        @endif
+    </div>
 
 @endsection

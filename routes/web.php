@@ -17,12 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/projects/', 'ProjectsListController@index')->name('projects');
 
 // Grouping the routes which requires the users to be logged in
 Route::group(['middleware' => ['auth', 'url_protect']], function(){
     
     // Route::get('/{user}/dashboard', 'HomeController@index')->name('home');
-    Route::get('/projects/', 'ProjectsListController@index')->name('projects');
     
     // Use a prefix for the route and also group other routes with the same prefix
     Route::prefix('{user}') -> group(function(){

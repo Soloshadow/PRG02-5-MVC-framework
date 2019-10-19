@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Role::class, function (Faker $faker) {
     
     return [
-        'role' => $faker->randomElement(['project owner', 'project leader', 'junior developer', 'medior developer', 'senior developer'])
+        'role' => $faker->randomElement(['project owner', 'project leader', 'senior developer', 'medior developer', 'junior developer'])
     ];
 });
