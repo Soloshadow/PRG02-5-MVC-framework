@@ -13,16 +13,20 @@ class ProjectsListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user)
     {
 
+        // Get the user
+        $user = User::findOrFail($user);
+
         // Get all projects with their tasks
-        $projects = Project::with('tasks')->get();
+        $projects = $user->projects;
 
         // dd($projects);
 
-        return view('projects', [
+        return view('projects.index', [
             'projects' => $projects,
+            'user' => $user,
         ]);
     }
 
@@ -31,9 +35,14 @@ class ProjectsListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($user)
     {
         //
+        $user = User::findOrFail($user);
+
+        return view('projects.create', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -56,7 +65,7 @@ class ProjectsListController extends Controller
     public function show($user, $id)
     {
         
-        // Get the single project using id from database where user_id matches user in parameter
+        // Get the user
         $user = User::findOrFail($user);
 
         // get the user role id
@@ -82,7 +91,7 @@ class ProjectsListController extends Controller
                 break;
         }
         
-        return view('projects.singleproject', [
+        return view('projects.show', [
             'project' => $project,
             'tasks' => $tasks,
         ]);

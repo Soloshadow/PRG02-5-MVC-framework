@@ -16,21 +16,11 @@
 
                     Welcome back {{$role}} {{$user->name}}! <br />
                     
-                    Projects you are currently working on:
-                    <ul>
-                        @foreach($project as $p)
-                            <li>
-                                {{$p->project_name}} -
-                            <a href="{{route('singleproject', ['id' => $p->id, 'user'=> $user])}}"> view </a>
+                    <a href="{{route('projects.index', ['user'=> $user])}}"> View Current projects</a>
                              
-                            </li>
-                        @endforeach
-                    </ul>
-                    
                 </div>
             </div>
         </div>
     </div>
-    <a href="{{url('/')}}" class="btn btn-primary">Create</a>
 </div>
 @endsection
