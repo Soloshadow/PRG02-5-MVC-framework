@@ -22,12 +22,7 @@
                             <li>
                                 {{$p->project_name}} -
                             <a href="{{route('singleproject', ['id' => $p->id, 'user'=> $user])}}"> view </a>
-                                {{-- <a href="{{ url('/projects/'.$p->id) }}"> view </a> --}}
-                                {{-- <ul>
-                                    @foreach($tasks as $task)
-                                        <li>{{$task->task}} - {{$task->MoSCoW}}</li>
-                                    @endforeach
-                                </ul> --}}
+                             
                             </li>
                         @endforeach
                     </ul>
@@ -36,5 +31,6 @@
             </div>
         </div>
     </div>
+    <a href="{{url('/')}}" class="btn btn-primary">Create</a>
 </div>
 @endsection

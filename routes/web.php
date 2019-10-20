@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth', 'url_protect']], function(){
     // Use a prefix for the route and also group other routes with the same prefix
     Route::prefix('{user}') -> group(function(){
         Route::get('dashboard', 'HomeController@index') -> name('home');
-        Route::get('/projects/{id}/', 'SingleProject@index')->name('singleproject');
+        Route::get('/projects/{id}/', 'ProjectsListController@show')->name('singleproject');
     });
 });
 

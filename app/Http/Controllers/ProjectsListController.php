@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\User;
 
 class ProjectsListController extends Controller
 {
@@ -52,9 +53,39 @@ class ProjectsListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user, $id)
     {
-        //
+        
+        // Get the single project using id from database where user_id matches user in parameter
+        $user = User::findOrFail($user);
+
+        // get the user role id
+        $role = $user->role->id;
+        
+
+        // find one project, belonging to a specific user, based on the id
+        $project = $user->projects->find($id);
+        // dd($user);
+
+        switch($role){
+            case 5:
+                $tasks = $project->tasks->whereIn("MoSCoW", ['W'])->sortBy('MoSCoW');
+                break;
+            case 4:
+                $tasks = $project->tasks->whereIn("MoSCoW", ['S', 'C', 'W'])->sortBy('MoSCoW');
+                break;
+            case 1:
+                $tasks = null;
+                break;
+            default:
+                $tasks = $project->tasks->sortBy('MoSCoW');
+                break;
+        }
+        
+        return view('projects.singleproject', [
+            'project' => $project,
+            'tasks' => $tasks,
+        ]);
     }
 
     /**

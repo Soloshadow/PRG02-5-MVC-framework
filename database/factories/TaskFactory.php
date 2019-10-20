@@ -7,9 +7,9 @@ use Faker\Generator as Faker;
 
 $factory->define(Task::class, function (Faker $faker) {
     return [
-        'project_id' => $faker->randomElement([1, 2, 3, 4]),
+        'project_id' => rand(1,10),
         'task' => $faker->sentence,
         'MoSCoW' => $faker->randomElement(['M', 'S', 'C', 'W']),
-        'progress' => $faker->randomElement(['to do', 'doing', 'done'],)
+        'progress' => $faker->randomElement(['not started', 'doing', 'done'],)
     ];
 });

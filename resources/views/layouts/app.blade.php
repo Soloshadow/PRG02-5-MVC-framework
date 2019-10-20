@@ -32,14 +32,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        {{-- Check if authenticated and if user role is not 'project owner' to show projects navlink --}}
-                        {{-- @if(Auth::check() && $role != "project owner")
-                            <a href="{{ route('projects') }}" class="nav-link">Projects</a>
-                            @endif --}}
-                        <a href="{{ route('projects') }}" class="nav-link">Projects</a>
-                    </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
