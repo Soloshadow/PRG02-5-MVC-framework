@@ -27,9 +27,9 @@ Route::group(['middleware' => ['auth', 'url_protect']], function(){
     Route::prefix('{user}') -> group(function(){
         Route::get('dashboard', 'HomeController@index') -> name('home');
         Route::get('projects/', 'ProjectsListController@index')->name('projects.index');
-        Route::get('projects/show/{id}/', 'ProjectsListController@show')->name('projects.show');
         Route::get('projects/create', 'ProjectsListController@create')->name('projects.create')->middleware('lead_access:project leader');
-        Route::store('projects/', 'ProjectsListController@store')->name('projects.store');
+        Route::post('projects/', 'ProjectsListController@store')->name('projects.store');
+        Route::get('projects/show/{id}/', 'ProjectsListController@show')->name('projects.show');
     });
 });
 

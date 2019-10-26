@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Project;
 use App\User;
 
@@ -40,8 +41,14 @@ class ProjectsListController extends Controller
         //
         $user = User::findOrFail($user);
 
+        // $owners = User::where('role_id', "==", 1)->get();
+        // $developers = User::where('role_id', "!=", 1)->get();
+
+        $developers = User::get();
+
         return view('projects.create', [
             'user' => $user,
+            'developers' => $developers,
         ]);
     }
 
@@ -51,9 +58,22 @@ class ProjectsListController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $user)
     {
-        //
+        // $data = $request->input('developers');
+
+        
+        // foreach($data as $d){
+        //     echo ($d);
+        // }
+
+        $validation = $request->validate([
+            'project_name' => 'required|min:5',
+            'developers' => 'required|array'
+        ]);
+
+        dd($validation);
+
     }
 
     /**
