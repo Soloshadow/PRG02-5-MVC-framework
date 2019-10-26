@@ -72,8 +72,21 @@ class ProjectsListController extends Controller
             'developers' => 'required|array'
         ]);
 
-        dd($validation);
+        // dd($user);
 
+        // dd($validation['developers']);
+
+        $project = new Project;
+
+        $project->project_name = $validation['project_name'];
+
+        $project->save();
+        
+        $project -> users() -> attach($user);
+        $project -> users() -> attach($validation['developers']);
+        
+        return redirect()->route('projects.index', ['user' => $user]);
+        
     }
 
     /**

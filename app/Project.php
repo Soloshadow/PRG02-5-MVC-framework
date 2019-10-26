@@ -14,7 +14,7 @@ class Project extends Model
 
     public function users(){
         // second argument is to define a specific joined table name.
-        return $this->belongsToMany(User::class, 'user_project')->withTimestamps(); 
+        return $this->belongsToMany(User::class)->withTimestamps(); 
     }
 
     public function tasks(){

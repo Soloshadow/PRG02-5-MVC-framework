@@ -14,7 +14,7 @@ class UsersProjectsTableSeeder extends Seeder
     {
         // Table seeder for user project. creating multiple data
         for($i = 0; $i < 11; $i++){
-            DB::table('user_project')->insert([
+            DB::table('project_user')->insert([
                 'user_id' => rand(1, 10),
                 'project_id' => rand(1, 10),
             ]);

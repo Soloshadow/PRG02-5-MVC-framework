@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     // one to many relationship. User can have many projects. the second argument is to define a specific table name
     public function projects(){
-        return $this->belongsToMany(Project::class, 'user_project')->withTimestamps();
+        return $this->belongsToMany(Project::class)->withTimestamps();
     }
 
     // one to many relationship. User can have many task through projects
