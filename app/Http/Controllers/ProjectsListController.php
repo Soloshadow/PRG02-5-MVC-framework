@@ -44,7 +44,9 @@ class ProjectsListController extends Controller
         // $owners = User::where('role_id', "==", 1)->get();
         // $developers = User::where('role_id', "!=", 1)->get();
 
-        $developers = User::get();
+        // dd($user);
+
+        $developers = User::where('id', '!=', $user->id)->get();
 
         return view('projects.create', [
             'user' => $user,
