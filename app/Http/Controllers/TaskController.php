@@ -30,9 +30,9 @@ class TaskController extends Controller
 
         $task = new task;
         $task->project_id = $project_id;
-        $task->task = $validation['task'];
-        $task->MoSCoW = $validation['moscow'];
-        $task->progress = $validation['progress'];
+        $task->task = $validated['task'];
+        $task->MoSCoW = $validated['moscow'];
+        $task->progress = $validated['progress'];
 
         $task->save();
 

@@ -14,7 +14,7 @@
                         @foreach($projects as $p)
                             <li>
                                 {{$p->project_name}} -
-                                <a href="{{route('projects.show', ['id' => $p->id, 'user'=> $user])}}"> view </a>
+                                <a href="{{route('projects.show', ['user'=> $user, 'id' => $p->id])}}"> view </a>
                             </li>
                         @endforeach
                     </ul>

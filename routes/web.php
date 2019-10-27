@@ -26,14 +26,23 @@ Route::group(['middleware' => ['auth', 'url_protect']], function(){
     // Use a prefix for the route and also group other routes with the same prefix
     Route::prefix('{user}') -> group(function(){
         Route::get('dashboard', 'HomeController@index') -> name('home');
-        
-        Route::prefix('projects') -> group(function(){
-            Route::get('/', 'ProjectsListController@index')->name('projects.index');
-            Route::get('create', 'ProjectsListController@create')->name('projects.create')->middleware('lead_access:project leader');
-            Route::post('/', 'ProjectsListController@store')->name('projects.store');
-            Route::get('show/{id}/', 'ProjectsListController@show')->name('projects.show');
-            Route::post('/show/{id}/', 'TaskController@store')->name('task.store');
-        });
+
+        // Route::prefix('projects') -> group(function(){
+        //     // Route::get('/', 'ProjectsListController@index')->name('projects.index');
+        //     // Route::get('create', 'ProjectsListController@create')->name('projects.create')->middleware('lead_access:project leader');
+        //     // Route::post('/', 'ProjectsListController@store')->name('projects.store');
+        //     // Route::get('show/{id}/', 'ProjectsListController@show')->name('projects.show');
+
+        //     Route::resource('/', 'ProjectsListController');
+
+        //     Route::post('/show/{id}/', 'TaskController@store')->name('task.store');
+        // });
+
+        Route::resource('projects', 'ProjectsListController')->except([
+            'show'
+        ]);
+        Route::get('show/{id}/', 'ProjectsListController@show')->name('projects.show');
+        Route::post('/show/{id}/', 'TaskController@store')->name('task.store');
     });
     
 });
