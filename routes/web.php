@@ -38,9 +38,10 @@ Route::group(['middleware' => ['auth', 'url_protect']], function(){
         //     Route::post('/show/{id}/', 'TaskController@store')->name('task.store');
         // });
 
-        Route::resource('projects', 'ProjectsListController')->except([
-            'show'
+        Route::resource('projects', 'ProjectsListController')->middleware('lead_access:project leader')->except([
+            'index','show'
         ]);
+        Route::get('projects/', 'ProjectsListController@index')->name('projects.index');
         Route::get('show/{id}/', 'ProjectsListController@show')->name('projects.show');
         Route::post('/show/{id}/', 'TaskController@store')->name('task.store');
     });
