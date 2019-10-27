@@ -27,21 +27,24 @@
                                         </span>
                                     @enderror
                                 </div>
+                                
                             </div>
 
-                            <h4>People associated with this project:</h4>
-                            {{$errors -> first('developers')}}
-
+                            <h4 class="text-center">People associated with this project:</h4>
                             @foreach($developers as $developer)
-                                <div class="form-group row">
+                                <div class="form-group row col-md-8 m-auto">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" name="developers[]" value="{{$developer->id}}">
                                         <label class="form-check-label">{{$developer->name}} - {{$developer->role->role}}</label>
                                     </div>
                                 </div>
+                                <hr/>
                             @endforeach
 
-                            
+                            @error('developers')
+                                <span class="invalid-feedback" role='alert'><strong>{{ $message }}</strong></span>
+                            @enderror
+                              
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

@@ -23,8 +23,6 @@ class ProjectsListController extends Controller
         // Get all projects with their tasks
         $projects = $user->projects;
 
-        // dd($projects);
-
         return view('projects.index', [
             'projects' => $projects,
             'user' => $user,
@@ -38,14 +36,10 @@ class ProjectsListController extends Controller
      */
     public function create($user)
     {
-        //
+        // find current logged in user or throw an error page
         $user = User::findOrFail($user);
 
-        // $owners = User::where('role_id', "==", 1)->get();
-        // $developers = User::where('role_id', "!=", 1)->get();
-
-        // dd($user);
-
+        // get list of owners and developers except the current logged in user
         $developers = User::where('id', '!=', $user->id)->get();
 
         return view('projects.create', [
@@ -62,21 +56,12 @@ class ProjectsListController extends Controller
      */
     public function store(Request $request, $user)
     {
-        // $data = $request->input('developers');
 
-        
-        // foreach($data as $d){
-        //     echo ($d);
-        // }
-
+        // Form validation before storing in DB
         $validation = $request->validate([
             'project_name' => 'required|min:5',
-            'developers' => 'required|array'
+            'developers' => 'required'
         ]);
-
-        // dd($user);
-
-        // dd($validation['developers']);
 
         $project = new Project;
 
@@ -84,9 +69,11 @@ class ProjectsListController extends Controller
 
         $project->save();
         
+        // Saving project to the correct user in pivot table
         $project -> users() -> attach($user);
         $project -> users() -> attach($validation['developers']);
         
+        // redirecting user back to the specific url
         return redirect()->route('projects.index', ['user' => $user]);
         
     }
@@ -109,8 +96,12 @@ class ProjectsListController extends Controller
 
         // find one project, belonging to a specific user, based on the id
         $project = $user->projects->find($id);
-        // dd($user);
-
+        
+        /* 
+            Compare current user role to a specific role.
+            Get the tasks from DB based on user role.
+            Might be deleted later.
+        */
         switch($role){
             case 5:
                 $tasks = $project->tasks->whereIn("MoSCoW", ['W'])->sortBy('MoSCoW');
