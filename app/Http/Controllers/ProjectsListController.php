@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Project;
@@ -14,11 +16,10 @@ class ProjectsListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user)
+    public function index()
     {
-
         // Get the user
-        $user = User::findOrFail($user);
+        $user = User::findOrFail(Auth::id());
 
         // Get all projects with their tasks
         $projects = $user->projects;
@@ -86,7 +87,6 @@ class ProjectsListController extends Controller
      */
     public function show($user, $id)
     {
-        
         // Get the user
         $user = User::findOrFail($user);
 
@@ -132,6 +132,8 @@ class ProjectsListController extends Controller
     public function edit($id)
     {
         //
+
+        return view('projects.edit');
     }
 
     /**
@@ -154,6 +156,8 @@ class ProjectsListController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+
+        $project->delete();
     }
 }

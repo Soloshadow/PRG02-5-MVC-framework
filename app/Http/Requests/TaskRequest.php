@@ -25,7 +25,7 @@ class TaskRequest extends FormRequest
     {
         return [
             //
-            'task' => 'required|min:5|max:255',
+            'task_name' => 'required|min:5|max:255',
             'progress' => 'required|filled', // user must choose a field
             'moscow' => 'required|filled'
         ];

@@ -8,6 +8,7 @@ use App\Http\Requests\TaskRequest;
 
 use App\User;
 use App\Project;
+use App\Task;
 
 class TaskController extends Controller
 {
@@ -55,7 +56,7 @@ class TaskController extends Controller
 
         $task = new task;
         $task->project_id = $project_id;
-        $task->task = $validated['task'];
+        $task->task = $validated['task_name'];
         $task->MoSCoW = $validated['moscow'];
         $task->progress = $validated['progress'];
 
@@ -107,5 +108,7 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
+        $task = Task::find($id);
+        $task->delete();
     }
 }

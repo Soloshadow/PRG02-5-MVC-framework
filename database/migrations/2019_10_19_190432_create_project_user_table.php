@@ -18,6 +18,14 @@ class CreateProjectUserTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
             $table->timestamps();
+
+            $table->index('user_id');
+            $table->index('project_id');
+
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
         });
     }
 

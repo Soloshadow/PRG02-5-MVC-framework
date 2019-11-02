@@ -16,13 +16,13 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('projects')->ondelete('cascade');
-            $table->string('task');
+            $table->string('task_name');
             $table->char('MoSCoW');
             $table->string('progress');
             $table->timestamps();
-
+            
             $table->index('project_id');
+            $table->foreign('project_id')->references('id')->on('projects')->ondelete('cascade');
         });
     }
 
