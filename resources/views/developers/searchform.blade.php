@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <label for="search" class="col-sm-2 col-form-label">Search</label>
-        <input type="text" class="col-sm-9 @error('search') is-invalid @enderror" id='search' name='search' placeholder='Enter full developer name here' required>
+        <input type="text" class="col-sm-9 @error('search') is-invalid @enderror" id='search' name='search' placeholder='Enter full developer name here'>
 
         @error('project_name')
             <span class="invalid-feedback" role="alert">
