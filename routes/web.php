@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/developers', 'UserController@index')->name('developers.index');
+Route::post('/developers/search', 'UserController@searchDevs')->name('developers.search');
+// Route::get('/developers/search', 'UserController@searchDevs')->name('developers.search');
 
 Auth::routes();
 
