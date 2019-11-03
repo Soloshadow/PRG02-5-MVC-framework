@@ -85,6 +85,8 @@ class TaskController extends Controller
     public function edit($id)
     {
         //
+
+        return view('tasks.edit');
     }
 
     /**
@@ -105,10 +107,12 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user, $project, $id)
     {
         //
         $task = Task::find($id);
         $task->delete();
+
+        return redirect()->back();
     }
 }

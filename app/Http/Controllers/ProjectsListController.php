@@ -18,16 +18,11 @@ class ProjectsListController extends Controller
      */
     public function index()
     {
-        // Get the user
-        $user = User::findOrFail(Auth::id());
-
-        // Get all projects with their tasks
-        $projects = $user->projects;
-
-        return view('projects.index', [
-            'projects' => $projects,
-            'user' => $user,
-        ]);
+    
+        // Eager load specific user with all its project
+        $user_projects = User::with( 'projects' ) -> where('id', '=', Auth::id()) ->get();
+        
+        return view('projects.index', [ 'user_projects' => $user_projects[0] ] );
     }
 
     /**
@@ -87,40 +82,16 @@ class ProjectsListController extends Controller
      */
     public function show($user, $id)
     {
-        // Get the user
-        $user = User::findOrFail($user);
 
-        // get the user role id
-        $role = $user->role->id;
+        // Eager load the list of projects from specific user and all its related rows.
+
+        $projects = Project::with('tasks')->where('id', '=', $id)->get();
         
 
-        // find one project, belonging to a specific user, based on the id
-        $project = $user->projects->find($id);
-        
-        /* 
-            Compare current user role to a specific role.
-            Get the tasks from DB based on user role.
-            Might be deleted later.
-        */
-        switch($role){
-            case 5:
-                $tasks = $project->tasks->whereIn("MoSCoW", ['W'])->sortBy('MoSCoW');
-                break;
-            case 4:
-                $tasks = $project->tasks->whereIn("MoSCoW", ['S', 'C', 'W'])->sortBy('MoSCoW');
-                break;
-            case 1:
-                $tasks = null;
-                break;
-            default:
-                $tasks = $project->tasks->sortBy('MoSCoW');
-                break;
-        }
-        
-        return view('projects.show', [
-            'project' => $project,
-            'tasks' => $tasks,
-        ]);
+        return view('projects.show', [ 
+            'project' => $projects[0],
+            'tasks' => $projects[0]->tasks
+            ]);
     }
 
     /**
@@ -154,7 +125,7 @@ class ProjectsListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user, $id)
     {
         $project = Project::find($id);
 

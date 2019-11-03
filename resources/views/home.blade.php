@@ -16,7 +16,7 @@
 
                     Welcome back {{$role}} {{$user->name}}! <br />
                     
-                    <a href="{{route('projects.index', ['user'=> $user])}}"> View Current projects</a>
+                    <a href="{{route('projects.index', ['user'=> $user] )}}"> View Current projects</a>
                              
                 </div>
             </div>

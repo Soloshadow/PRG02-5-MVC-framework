@@ -11,10 +11,10 @@
 
                 <div class="card-body">
                     <ul>
-                        @foreach($projects as $p)
+                        @foreach($user_projects->projects as $project)
                             <li>
-                                {{$p->project_name}} -
-                                <a href="{{ route('projects.show', ['user' =>$user, 'project' => $p->id]) }}"> view </a>
+                                {{$project->project_name}} -
+                                <a href="{{ route('projects.show', ['user' =>$user_projects->id, 'project' => $project->id]) }}"> view </a>
                             </li>
                         @endforeach
                     </ul>
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <a href="{{ route('projects.create', ['user' => $user]) }}" class="btn btn-primary">Create</a>
+    <a href="{{ route('projects.create', ['user' => $user_projects->id]) }}" class="btn btn-primary">Create</a>
 </div>
 
 @endsection
