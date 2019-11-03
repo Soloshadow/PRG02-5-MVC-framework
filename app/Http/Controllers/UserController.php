@@ -27,9 +27,9 @@ class UserController extends Controller
 
 
         // validation request
-        // $validateData = $request->validate([
-        //     'search' => 'required|min:5|max:255',
-        // ]);
+        $validateData = $request->validate([
+            'search' => 'regex:[A-Za-z1-9 ]| max: 20',
+        ]);
 
         // Eager load all users except the ones with role id of  1 (project owners)
         $developer = User::with('role')->where('name', '=', $request->search)->first();
