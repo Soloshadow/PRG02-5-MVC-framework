@@ -24,7 +24,7 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            // Task form request rules for validation
             'task_name' => 'required|min:5|max:255',
             'progress' => 'required|filled', // user must choose a field
             'moscow' => 'required|filled'

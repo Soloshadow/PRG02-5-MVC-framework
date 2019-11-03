@@ -100,11 +100,20 @@ class ProjectsListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($user, $id)
     {
-        //
+        // Eager load project with all current users
+        $project = Project::with('users')->where('id', '=', $id) -> get();
 
-        return view('projects.edit');
+        // get list of owners and developers except the current logged in user
+        $developers = User::where('id', '!=', $user)->get();
+
+        // dd(gettype($project[0]->users->toArray()));
+        return view('projects.edit', [ 
+            'project' => $project[0],
+            'users' => $project[0]->users,
+            'developers' => $developers
+            ]);
     }
 
     /**
@@ -114,9 +123,31 @@ class ProjectsListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user, $id)
     {
         //
+        $validation = $request->validate([
+            'project_name' => 'required|min:5',
+            'developers' => 'required'
+        ]);
+
+        // dd($validation);
+
+        $project = Project::find($id);
+        
+        //  Update project name with the new validated name
+        $project->project_name = $validation['project_name'];
+
+        // save/update project
+        $project->save();
+
+        // Sync new updated proejct with all selected develoeprs
+        $project -> users() -> sync($validation['developers']);
+
+        // Attach current user to the project otherwise the sync will remove the user
+        $project ->users() ->attach($user);
+        
+        return redirect()->route('projects.index', ['user' => $user]);
     }
 
     /**
@@ -130,5 +161,10 @@ class ProjectsListController extends Controller
         $project = Project::find($id);
 
         $project->delete();
+
+        // Eager load specific user with all its project
+        $user_projects = User::with( 'projects' ) -> where('id', '=', Auth::id()) ->get();
+        
+        return view('projects.index', [ 'user_projects' => $user_projects[0] ] );
     }
 }
