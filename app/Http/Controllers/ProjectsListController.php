@@ -11,6 +11,14 @@ use App\User;
 
 class ProjectsListController extends Controller
 {
+
+    public function __construct(){
+
+        $this->middleware('lead_access:project leader')->except('index');
+
+        // $this->authorizeResource(Project::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,6 +40,9 @@ class ProjectsListController extends Controller
      */
     public function create($user)
     {
+
+        $this->authorize('create', Project::class);
+        
         // find current logged in user or throw an error page
         $user = User::findOrFail($user);
 
@@ -102,6 +113,9 @@ class ProjectsListController extends Controller
      */
     public function edit($user, $id)
     {
+
+        $this->authorize('update', Project::class);
+
         // Eager load project with all current users
         $project = Project::with('users')->where('id', '=', $id) -> get();
 
@@ -158,6 +172,9 @@ class ProjectsListController extends Controller
      */
     public function destroy($user, $id)
     {
+
+        $this->authorize('delete', Project::class);
+
         $project = Project::find($id);
 
         $project->delete();

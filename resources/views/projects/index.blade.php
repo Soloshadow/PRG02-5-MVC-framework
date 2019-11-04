@@ -13,8 +13,10 @@
                     <ul>
                         @foreach($user_projects->projects as $project)
                             <li>
-                                {{$project->project_name}} -
-                                <a href="{{ route('projects.show', ['user' =>$user_projects->id, 'project' => $project->id]) }}"> view </a>
+                                {{$project->project_name}} 
+                                @can('create', App\Project::class)
+                                    - <a href="{{ route('projects.show', ['user' =>$user_projects->id, 'project' => $project->id]) }}"> view </a>
+                                @endcan    
                             </li>
                         @endforeach
                     </ul>
@@ -22,7 +24,11 @@
             </div>
         </div>
     </div>
-    <a href="{{ route('projects.create', ['user' => $user_projects->id]) }}" class="btn btn-primary">Create</a>
+
+    {{-- Check if user is authorize to perform this action. Authorization is given in the Policy --}}
+    @can('create', App\Project::class)
+        <a href="{{ route('projects.create', ['user' => $user_projects->id]) }}" class="btn btn-primary">Create</a>
+    @endcan
 </div>
 
 @endsection
