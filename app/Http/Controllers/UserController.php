@@ -9,7 +9,7 @@ use App\Role;
 class UserController extends Controller
 {
     //
-    public function index(Request $request){
+    public function index(){
 
         // Eager load all users except the ones with role id of  1 (project owners)
         $developers = User::with('role')->where('role_id', '!=', 1)->get();
@@ -28,20 +28,43 @@ class UserController extends Controller
 
         // validation request
         $validateData = $request->validate([
-            'search' => 'regex:[A-Za-z1-9 ]| max: 20',
+            'search' => 'max: 255',
         ]);
 
-        // Eager load all users except the ones with role id of  1 (project owners)
-        $developer = User::with('role')->where('name', '=', $request->search)->first();
-        // dd($developer->role);
+        
+        // dd($validateData);
+        
+        if($validateData){
 
-        if($developer || $developer != null){
+            if($request->roles != null){
+                
+                // Eager load all users where name is like requested and the role is like the requested
+
+                $developer = User::with('role')->where('name', 'like', '%'.$request->search.'%')->where('role_id', $request->roles)->first();
+                
+                if($developer == null){
+                    
+                    return view('developers.searchResults', [
+                        'developers' => null
+                    ]);
+
+                }
+
+                return view('developers.searchResults', [
+                    'developers' => $developer,
+                    'roles' => $developer->role->role
+                ]);
+            }
+
+            // Eager load all users except the ones with role id of  1 (project owners) and check where the name is something like the requested
+            $developer = User::with('role')->where('name', 'like', '%'.$request->search.'%')->first();
             return view('developers.searchResults', [
                 'developers' => $developer,
                 'roles' => $developer->role->role
             ]);
         }
         
-        dd('testing');
+
+        // dd('testing');
     }
 }
