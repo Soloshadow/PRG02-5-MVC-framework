@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role_id', 'company_name', 'team_id'
     ];
 
     /**
@@ -29,11 +29,31 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
+ * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // one to one relationship. User has one level
+    // public function level(){
+    //     return $this->belongsTo(Level::class);
+    // }
+
+    // one to many relationship. User can have many projects. the second argument is to define a specific table name
+    public function projects(){
+        return $this->belongsToMany(Project::class)->withTimestamps();
+    }
+
+    // one to many relationship. User can have many task through projects
+    public function projectTasks(){
+        return $this->hasManyThrough(Task::class, Project::class);
+    }
+
+    // one to many relationship. User can have one role
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
 }
